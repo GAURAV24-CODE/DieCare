@@ -5,7 +5,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>DiaCare | Patient Information</title>
+    <title>DiaCare | Diabetes Risk Screening</title>
+
+    <!-- SEO Description -->
+    <meta name="description"
+          content="DiaCare is an educational machine-learning application for diabetes-risk screening, built with Python, Flask and Scikit-learn.">
+
+    <!-- Open Graph Metadata for LinkedIn and Social Sharing -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="DiaCare | Diabetes Risk Screening">
+    <meta property="og:description"
+          content="Explore DiaCare, an educational machine-learning application that provides an estimated diabetes-risk screening result.">
+    <meta property="og:url" content="https://diecare.onrender.com/">
+    <meta property="og:image"
+          content="https://diecare.onrender.com/static/images/diacare-preview.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt"
+          content="DiaCare diabetes risk screening application preview">
+
+    <!-- Twitter / X Preview -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="DiaCare | Diabetes Risk Screening">
+    <meta name="twitter:description"
+          content="An educational machine-learning project built with Python, Flask and Scikit-learn.">
+    <meta name="twitter:image"
+          content="https://diecare.onrender.com/static/images/diacare-preview.jpg">
 
     <style>
         * {
@@ -17,6 +42,7 @@
         html {
             width: 100%;
             min-width: 0;
+            scroll-behavior: smooth;
         }
 
         body {
@@ -26,8 +52,14 @@
             min-height: 100vh;
             width: 100%;
             min-width: 0;
-            padding: clamp(18px, 3vw, 36px);
+            padding: clamp(14px, 3vw, 36px);
             overflow-x: hidden;
+        }
+
+        button,
+        input,
+        select {
+            font: inherit;
         }
 
         .container {
@@ -43,22 +75,22 @@
         }
 
         .logo-icon {
-            width: 62px;
-            height: 62px;
+            width: clamp(54px, 6vw, 62px);
+            height: clamp(54px, 6vw, 62px);
             background: #d7f3ee;
             color: #0d887e;
             border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 38px;
+            font-size: clamp(32px, 4vw, 38px);
             font-weight: 700;
             margin: 0 auto 12px;
         }
 
         .brand h1 {
             color: #07877d;
-            font-size: clamp(28px, 3vw, 36px);
+            font-size: clamp(27px, 4vw, 36px);
             font-weight: 750;
             letter-spacing: -0.8px;
             margin-bottom: 8px;
@@ -66,7 +98,7 @@
 
         .tagline {
             color: #718895;
-            font-size: 15px;
+            font-size: clamp(13px, 1.5vw, 15px);
             letter-spacing: 0.3px;
         }
 
@@ -75,7 +107,7 @@
             display: flex;
             justify-content: center;
             gap: clamp(8px, 1.5vw, 12px);
-            margin: 28px 0;
+            margin: clamp(20px, 3vw, 28px) 0;
         }
 
         .progress-step {
@@ -93,19 +125,19 @@
         .form-card {
             width: 100%;
             background: #ffffff;
-            border-radius: 26px;
-            padding: clamp(24px, 4vw, 46px);
+            border-radius: clamp(18px, 2.5vw, 26px);
+            padding: clamp(20px, 4vw, 46px);
             box-shadow: 0 12px 35px rgba(20, 90, 85, 0.07);
         }
 
         .form-heading {
             text-align: center;
-            margin-bottom: clamp(24px, 3vw, 36px);
+            margin-bottom: clamp(22px, 3vw, 36px);
         }
 
         .form-heading h2 {
             color: #173f4a;
-            font-size: clamp(23px, 2.5vw, 30px);
+            font-size: clamp(22px, 2.5vw, 30px);
             font-weight: 700;
             margin-bottom: 12px;
         }
@@ -121,7 +153,7 @@
             display: grid;
             grid-template-columns:
                 repeat(auto-fit, minmax(min(100%, 280px), 1fr));
-            gap: clamp(18px, 2.5vw, 26px);
+            gap: clamp(16px, 2.5vw, 26px);
             width: 100%;
         }
 
@@ -157,7 +189,9 @@
             font-family: inherit;
             font-size: 15px;
             outline: none;
-            transition: 0.2s ease;
+            transition: border-color 0.2s ease,
+                        box-shadow 0.2s ease,
+                        background 0.2s ease;
         }
 
         input::placeholder {
@@ -191,7 +225,9 @@
             font-weight: 700;
             cursor: pointer;
             margin-top: 32px;
-            transition: 0.2s ease;
+            transition: background 0.2s ease,
+                        transform 0.2s ease,
+                        box-shadow 0.2s ease;
         }
 
         .submit-button:hover {
@@ -223,7 +259,6 @@
 
         /* Tablet Layout */
         @media screen and (max-width: 900px) {
-
             .container {
                 max-width: 100%;
             }
@@ -239,23 +274,12 @@
 
         /* Mobile Layout */
         @media screen and (max-width: 600px) {
-
             body {
                 padding: 20px 12px;
             }
 
             .brand {
                 margin-bottom: 20px;
-            }
-
-            .brand h1 {
-                font-size: 29px;
-            }
-
-            .logo-icon {
-                width: 56px;
-                height: 56px;
-                font-size: 34px;
             }
 
             .progress {
@@ -271,16 +295,12 @@
                 margin-bottom: 25px;
             }
 
-            .form-heading h2 {
-                font-size: 23px;
-            }
-
             .form-heading p {
                 font-size: 14px;
             }
 
             .form-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: minmax(0, 1fr);
                 gap: 20px;
             }
 
@@ -308,7 +328,6 @@
 
         /* Very Small Screens */
         @media screen and (max-width: 360px) {
-
             body {
                 padding: 14px 8px;
             }
@@ -325,6 +344,17 @@
                 font-size: 11px;
             }
         }
+
+        /* Accessibility: Respect Reduced Motion */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+                animation-duration: 0.01ms !important;
+            }
+        }
     </style>
 </head>
 
@@ -334,7 +364,6 @@
 
         <!-- DiaCare Brand -->
         <header class="brand">
-
             <div class="logo-icon" aria-hidden="true">+</div>
 
             <h1>DiaCare</h1>
@@ -342,7 +371,6 @@
             <p class="tagline">
                 Small steps. Better health.
             </p>
-
         </header>
 
         <!-- Three-page Progress -->
@@ -356,14 +384,12 @@
         <main class="form-card">
 
             <div class="form-heading">
-
                 <h2>Patient Information</h2>
 
                 <p>
                     Welcome! Please enter your details before starting
                     the diabetes screening.
                 </p>
-
             </div>
 
             <form action="{{ url_for('screening') }}" method="POST">
@@ -372,7 +398,6 @@
 
                     <!-- Full Name -->
                     <div class="form-group full-width">
-
                         <label for="full_name">Full Name</label>
 
                         <input
@@ -388,12 +413,10 @@
                         <span class="field-hint">
                             Enter your name as you would like it to appear on your report.
                         </span>
-
                     </div>
 
                     <!-- Mobile Number -->
                     <div class="form-group">
-
                         <label for="mobile">Mobile Number</label>
 
                         <input
@@ -411,12 +434,10 @@
                         <span class="field-hint">
                             Enter your 10-digit Indian mobile number.
                         </span>
-
                     </div>
 
                     <!-- Age -->
                     <div class="form-group">
-
                         <label for="age">Age</label>
 
                         <input
@@ -432,20 +453,13 @@
                         <span class="field-hint">
                             Enter your age in completed years.
                         </span>
-
                     </div>
 
                     <!-- Gender -->
                     <div class="form-group">
-
                         <label for="gender">Gender</label>
 
-                        <select
-                            id="gender"
-                            name="gender"
-                            required
-                        >
-
+                        <select id="gender" name="gender" required>
                             <option value="" disabled selected>
                                 Select gender
                             </option>
@@ -453,18 +467,14 @@
                             <option value="Male">Male</option>
                             <option value="Female">Female</option>
                             <option value="Other">Other</option>
-
                             <option value="Prefer not to say">
                                 Prefer not to say
                             </option>
-
                         </select>
-
                     </div>
 
                     <!-- City -->
                     <div class="form-group">
-
                         <label for="city">City</label>
 
                         <input
@@ -476,7 +486,6 @@
                             maxlength="100"
                             required
                         >
-
                     </div>
 
                 </div>
@@ -489,12 +498,10 @@
 
             <!-- Privacy Note -->
             <p class="privacy-note">
-
                 <span class="privacy-icon">🔒</span>
 
                 Your information is used to prepare your screening report.
                 Please do not enter another person's details without their consent.
-
             </p>
 
         </main>
