@@ -13,18 +13,29 @@
     padding: 0;
 }
 
+html {
+    width: 100%;
+    min-width: 0;
+}
+
 body {
     font-family: "Segoe UI", Arial, sans-serif;
     background: linear-gradient(135deg, #e8f8f5, #f0f5ff);
     color: #243b53;
-    padding: 25px 15px;
+    width: 100%;
+    min-width: 0;
+    min-height: 100vh;
+    padding: clamp(16px, 3vw, 32px);
+    overflow-x: hidden;
 }
 
 .container {
-    max-width: 950px;
-    margin: auto;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
+/* Header */
 header {
     text-align: center;
     margin-bottom: 25px;
@@ -44,7 +55,7 @@ header {
 
 header h1 {
     color: #078477;
-    font-size: 29px;
+    font-size: clamp(26px, 3vw, 32px);
 }
 
 header p {
@@ -53,6 +64,7 @@ header p {
     margin-top: 5px;
 }
 
+/* Progress */
 .progress {
     display: flex;
     justify-content: center;
@@ -62,7 +74,7 @@ header p {
 
 .progress span {
     height: 5px;
-    width: 65px;
+    width: clamp(45px, 6vw, 70px);
     border-radius: 10px;
     background: #d4e4e7;
 }
@@ -71,23 +83,27 @@ header p {
     background: #0aa68f;
 }
 
+/* Main Card */
 .card {
+    width: 100%;
     background: white;
-    padding: 28px;
+    padding: clamp(20px, 3vw, 36px);
     border-radius: 22px;
     box-shadow: 0 12px 35px #164e6310;
 }
 
+/* Heading */
 .heading {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
     gap: 12px;
     margin-bottom: 8px;
 }
 
 .heading h2 {
-    font-size: 23px;
+    font-size: clamp(20px, 2.5vw, 25px);
 }
 
 .step {
@@ -97,26 +113,39 @@ header p {
     border-radius: 20px;
     font-size: 12px;
     font-weight: 700;
+    white-space: nowrap;
 }
 
 .subtitle {
     color: #718096;
     font-size: 14px;
-    margin-bottom: 22px;
+    line-height: 1.6;
+    margin-bottom: 24px;
 }
 
+/* Automatic Responsive Grid */
 .grid {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 15px;
+    grid-template-columns:
+        repeat(auto-fit, minmax(min(100%, 245px), 1fr));
+    gap: clamp(12px, 1.5vw, 18px);
+    width: 100%;
 }
 
+/* Measurement Field */
 .field {
-    padding: 17px;
+    min-width: 0;
+    width: 100%;
+    padding: clamp(14px, 2vw, 19px);
     border: 1px solid #e6edf2;
     border-radius: 16px;
     background: #fcfefe;
-    transition: 0.2s;
+    transition: 0.2s ease;
+}
+
+.field:hover {
+    border-color: #b8e5dc;
+    box-shadow: 0 5px 15px #164e6308;
 }
 
 .field:focus-within {
@@ -124,11 +153,17 @@ header p {
     box-shadow: 0 0 0 3px #0aa68f14;
 }
 
+/* Field Heading */
 .field-top {
     display: flex;
     align-items: center;
     gap: 10px;
     margin-bottom: 8px;
+    min-width: 0;
+}
+
+.field-top > div:last-child {
+    min-width: 0;
 }
 
 .icon {
@@ -154,6 +189,7 @@ header p {
 label {
     font-size: 14px;
     font-weight: 700;
+    overflow-wrap: anywhere;
 }
 
 .unit {
@@ -167,47 +203,68 @@ label {
     font-size: 12px;
     color: #7b8b99;
     margin-bottom: 10px;
-    line-height: 1.4;
+    line-height: 1.5;
 }
 
+/* Input */
 input {
+    display: block;
     width: 100%;
+    min-width: 0;
+    height: 45px;
     border: 1px solid #dce6eb;
     border-radius: 10px;
-    padding: 12px;
+    padding: 10px 12px;
     font-size: 15px;
     outline: none;
     background: white;
     color: #243b53;
+    font-family: inherit;
 }
 
 input:focus {
     border-color: #0aa68f;
+    box-shadow: 0 0 0 3px #0aa68f14;
 }
 
 input::placeholder {
     color: #a4b1bb;
 }
 
+/* Action Buttons */
 .actions {
     display: flex;
+    flex-wrap: wrap;
     gap: 12px;
-    margin-top: 24px;
+    margin-top: 26px;
 }
 
-.back, .submit {
+.back,
+.submit {
+    min-width: 0;
+    min-height: 50px;
     padding: 15px;
     border-radius: 12px;
     text-align: center;
     text-decoration: none;
+    font-family: inherit;
     font-size: 15px;
     font-weight: 700;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.2s ease;
 }
 
 .back {
     flex: 1;
     color: #64748b;
     border: 1px solid #dce6eb;
+    background: white;
+}
+
+.back:hover {
+    background: #f1f7f7;
 }
 
 .submit {
@@ -220,14 +277,22 @@ input::placeholder {
 
 .submit:hover {
     filter: brightness(0.95);
+    transform: translateY(-1px);
 }
 
+.submit:focus-visible,
+.back:focus-visible {
+    outline: 3px solid #8ce3d7;
+    outline-offset: 3px;
+}
+
+/* Note */
 .note {
     text-align: center;
     color: #82919c;
     font-size: 12px;
-    line-height: 1.6;
-    margin-top: 18px;
+    line-height: 1.7;
+    margin-top: 20px;
 }
 
 footer {
@@ -235,30 +300,118 @@ footer {
     color: #91a5aa;
     font-size: 12px;
     margin-top: 22px;
+    padding-bottom: 10px;
 }
 
-@media (max-width: 650px) {
-    .card {
-        padding: 20px 15px;
+/* Tablet */
+@media screen and (max-width: 900px) {
+
+    .container {
+        max-width: 100%;
     }
 
     .grid {
-        grid-template-columns: 1fr;
+        grid-template-columns:
+            repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+    }
+
+    .card {
+        padding: 25px;
+    }
+}
+
+/* Mobile */
+@media screen and (max-width: 650px) {
+
+    body {
+        padding: 18px 12px;
+    }
+
+    header {
+        margin-bottom: 20px;
+    }
+
+    header h1 {
+        font-size: 27px;
+    }
+
+    .card {
+        padding: 21px 15px;
+        border-radius: 18px;
     }
 
     .heading {
         align-items: flex-start;
         flex-direction: column;
+        gap: 10px;
+    }
+
+    .heading h2 {
+        font-size: 21px;
+    }
+
+    .subtitle {
+        font-size: 13px;
+        margin-bottom: 18px;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .field {
+        padding: 15px;
     }
 
     .actions {
         flex-direction: column-reverse;
+        gap: 10px;
+    }
+
+    .back,
+    .submit {
+        width: 100%;
+        flex: auto;
+    }
+
+    .note {
+        font-size: 11px;
+    }
+}
+
+/* Very Small Screens */
+@media screen and (max-width: 360px) {
+
+    body {
+        padding: 12px 8px;
+    }
+
+    .card {
+        padding: 17px 12px;
+    }
+
+    .field {
+        padding: 13px;
+    }
+
+    .field-top {
+        gap: 8px;
+    }
+
+    label {
+        font-size: 13px;
+    }
+
+    .hint {
+        font-size: 11px;
     }
 }
 </style>
 </head>
 
 <body>
+
 <div class="container">
 
 <header>
@@ -267,7 +420,8 @@ footer {
     <p>Your health screening companion</p>
 </header>
 
-<div class="progress">
+<!-- Progress -->
+<div class="progress" aria-label="Step 2 of 3">
     <span class="active"></span>
     <span class="active"></span>
     <span></span>
@@ -285,8 +439,10 @@ footer {
     </p>
 
     <form action="/predict" method="POST">
+
     <div class="grid">
 
+        <!-- Pregnancies -->
         <div class="field">
             <div class="field-top">
                 <div class="icon mint">🤰</div>
@@ -300,6 +456,7 @@ footer {
                    min="0" max="20" step="1" placeholder="e.g. 2" required>
         </div>
 
+        <!-- Glucose -->
         <div class="field">
             <div class="field-top">
                 <div class="icon blue">🩸</div>
@@ -313,6 +470,7 @@ footer {
                    min="1" max="500" step="any" placeholder="e.g. 120" required>
         </div>
 
+        <!-- Blood Pressure -->
         <div class="field">
             <div class="field-top">
                 <div class="icon purple">💓</div>
@@ -326,6 +484,7 @@ footer {
                    min="1" max="300" step="any" placeholder="e.g. 70" required>
         </div>
 
+        <!-- Skin Thickness -->
         <div class="field">
             <div class="field-top">
                 <div class="icon orange">📏</div>
@@ -339,6 +498,7 @@ footer {
                    min="1" max="100" step="any" placeholder="e.g. 20" required>
         </div>
 
+        <!-- Insulin -->
         <div class="field">
             <div class="field-top">
                 <div class="icon pink">🧪</div>
@@ -352,6 +512,7 @@ footer {
                    min="1" max="3000" step="any" placeholder="e.g. 80" required>
         </div>
 
+        <!-- BMI -->
         <div class="field">
             <div class="field-top">
                 <div class="icon yellow">⚖️</div>
@@ -365,6 +526,7 @@ footer {
                    min="1" max="100" step="any" placeholder="e.g. 25.5" required>
         </div>
 
+        <!-- Diabetes Pedigree Function -->
         <div class="field">
             <div class="field-top">
                 <div class="icon cyan">🧬</div>
@@ -379,6 +541,7 @@ footer {
                    min="0" max="3" step="any" placeholder="e.g. 0.45" required>
         </div>
 
+        <!-- Age -->
         <div class="field">
             <div class="field-top">
                 <div class="icon green">🎂</div>
@@ -394,12 +557,14 @@ footer {
 
     </div>
 
+    <!-- Actions -->
     <div class="actions">
         <a href="/" class="back">← Back</a>
         <button type="submit" class="submit">
             Get Screening Result →
         </button>
     </div>
+
     </form>
 
     <p class="note">
@@ -409,8 +574,11 @@ footer {
 
 </main>
 
-<footer>DiaCare · Health screening made simple</footer>
+<footer>
+    DiaCare · Health screening made simple
+</footer>
 
 </div>
+
 </body>
 </html>

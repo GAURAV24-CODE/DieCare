@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,23 +14,32 @@
             padding: 0;
         }
 
+        html {
+            width: 100%;
+            min-width: 0;
+        }
+
         body {
             font-family: "Segoe UI", Arial, sans-serif;
             background: #f0f8f7;
             color: #203f4a;
             min-height: 100vh;
-            padding: 30px 18px;
+            width: 100%;
+            min-width: 0;
+            padding: clamp(18px, 3vw, 36px);
+            overflow-x: hidden;
         }
 
         .container {
-            max-width: 900px;
+            width: 100%;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
-        /* Brand header */
+        /* Brand Header */
         .brand {
             text-align: center;
-            margin-bottom: 28px;
+            margin-bottom: clamp(18px, 3vw, 28px);
         }
 
         .logo-icon {
@@ -48,7 +58,7 @@
 
         .brand h1 {
             color: #07877d;
-            font-size: 34px;
+            font-size: clamp(28px, 3vw, 36px);
             font-weight: 750;
             letter-spacing: -0.8px;
             margin-bottom: 8px;
@@ -60,16 +70,16 @@
             letter-spacing: 0.3px;
         }
 
-        /* Progress indicator */
+        /* Progress Indicator */
         .progress {
             display: flex;
             justify-content: center;
-            gap: 12px;
+            gap: clamp(8px, 1.5vw, 12px);
             margin: 28px 0;
         }
 
         .progress-step {
-            width: 80px;
+            width: clamp(45px, 7vw, 80px);
             height: 6px;
             background: #d7e7e5;
             border-radius: 20px;
@@ -79,22 +89,23 @@
             background: #0d9488;
         }
 
-        /* Main form card */
+        /* Main Form Card */
         .form-card {
+            width: 100%;
             background: #ffffff;
             border-radius: 26px;
-            padding: 42px 40px;
+            padding: clamp(24px, 4vw, 46px);
             box-shadow: 0 12px 35px rgba(20, 90, 85, 0.07);
         }
 
         .form-heading {
             text-align: center;
-            margin-bottom: 34px;
+            margin-bottom: clamp(24px, 3vw, 36px);
         }
 
         .form-heading h2 {
             color: #173f4a;
-            font-size: 28px;
+            font-size: clamp(23px, 2.5vw, 30px);
             font-weight: 700;
             margin-bottom: 12px;
         }
@@ -105,16 +116,20 @@
             line-height: 1.7;
         }
 
-        /* Form fields */
+        /* Responsive Form Grid */
         .form-grid {
             display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 25px 23px;
+            grid-template-columns:
+                repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+            gap: clamp(18px, 2.5vw, 26px);
+            width: 100%;
         }
 
         .form-group {
             display: flex;
             flex-direction: column;
+            min-width: 0;
+            width: 100%;
         }
 
         .form-group.full-width {
@@ -132,6 +147,7 @@
         input,
         select {
             width: 100%;
+            min-width: 0;
             height: 54px;
             padding: 0 16px;
             border: 1px solid #d5e4e8;
@@ -162,10 +178,10 @@
             margin-top: 9px;
         }
 
-        /* Continue button */
+        /* Continue Button */
         .submit-button {
             width: 100%;
-            height: 58px;
+            min-height: 56px;
             border: none;
             border-radius: 14px;
             background: #0b887d;
@@ -189,9 +205,10 @@
             outline-offset: 3px;
         }
 
-        /* Privacy note */
+        /* Privacy Note */
         .privacy-note {
-            max-width: 690px;
+            width: 100%;
+            max-width: 750px;
             margin: 24px auto 0;
             text-align: center;
             color: #718895;
@@ -204,23 +221,58 @@
             margin-right: 4px;
         }
 
-        /* Mobile layout */
-        @media (max-width: 600px) {
-            body {
-                padding: 22px 13px;
-            }
+        /* Tablet Layout */
+        @media screen and (max-width: 900px) {
 
-            .brand h1 {
-                font-size: 30px;
+            .container {
+                max-width: 100%;
             }
 
             .form-card {
-                padding: 28px 20px;
-                border-radius: 22px;
+                padding: 30px;
+            }
+
+            .form-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        /* Mobile Layout */
+        @media screen and (max-width: 600px) {
+
+            body {
+                padding: 20px 12px;
+            }
+
+            .brand {
+                margin-bottom: 20px;
+            }
+
+            .brand h1 {
+                font-size: 29px;
+            }
+
+            .logo-icon {
+                width: 56px;
+                height: 56px;
+                font-size: 34px;
+            }
+
+            .progress {
+                margin: 22px 0;
+            }
+
+            .form-card {
+                padding: 25px 18px;
+                border-radius: 21px;
+            }
+
+            .form-heading {
+                margin-bottom: 25px;
             }
 
             .form-heading h2 {
-                font-size: 24px;
+                font-size: 23px;
             }
 
             .form-heading p {
@@ -229,15 +281,48 @@
 
             .form-grid {
                 grid-template-columns: 1fr;
-                gap: 21px;
+                gap: 20px;
             }
 
             .form-group.full-width {
                 grid-column: auto;
             }
 
-            .progress-step {
-                width: 65px;
+            input,
+            select {
+                height: 51px;
+                font-size: 14px;
+            }
+
+            .submit-button {
+                margin-top: 25px;
+                min-height: 54px;
+                font-size: 15px;
+            }
+
+            .privacy-note {
+                font-size: 11px;
+                margin-top: 20px;
+            }
+        }
+
+        /* Very Small Screens */
+        @media screen and (max-width: 360px) {
+
+            body {
+                padding: 14px 8px;
+            }
+
+            .form-card {
+                padding: 20px 13px;
+            }
+
+            .form-heading h2 {
+                font-size: 21px;
+            }
+
+            .field-hint {
+                font-size: 11px;
             }
         }
     </style>
@@ -247,8 +332,9 @@
 
     <div class="container">
 
-        <!-- DiaCare brand -->
+        <!-- DiaCare Brand -->
         <header class="brand">
+
             <div class="logo-icon" aria-hidden="true">+</div>
 
             <h1>DiaCare</h1>
@@ -256,33 +342,37 @@
             <p class="tagline">
                 Small steps. Better health.
             </p>
+
         </header>
 
-        <!-- Three-page progress -->
+        <!-- Three-page Progress -->
         <div class="progress" aria-label="Step 1 of 3">
             <div class="progress-step active"></div>
             <div class="progress-step"></div>
             <div class="progress-step"></div>
         </div>
 
-        <!-- Patient information form -->
+        <!-- Patient Information Form -->
         <main class="form-card">
 
             <div class="form-heading">
+
                 <h2>Patient Information</h2>
 
                 <p>
                     Welcome! Please enter your details before starting
                     the diabetes screening.
                 </p>
+
             </div>
 
             <form action="{{ url_for('screening') }}" method="POST">
 
                 <div class="form-grid">
 
-                    <!-- Full name -->
+                    <!-- Full Name -->
                     <div class="form-group full-width">
+
                         <label for="full_name">Full Name</label>
 
                         <input
@@ -298,10 +388,12 @@
                         <span class="field-hint">
                             Enter your name as you would like it to appear on your report.
                         </span>
+
                     </div>
 
-                    <!-- Mobile number -->
+                    <!-- Mobile Number -->
                     <div class="form-group">
+
                         <label for="mobile">Mobile Number</label>
 
                         <input
@@ -319,10 +411,12 @@
                         <span class="field-hint">
                             Enter your 10-digit Indian mobile number.
                         </span>
+
                     </div>
 
                     <!-- Age -->
                     <div class="form-group">
+
                         <label for="age">Age</label>
 
                         <input
@@ -338,10 +432,12 @@
                         <span class="field-hint">
                             Enter your age in completed years.
                         </span>
+
                     </div>
 
                     <!-- Gender -->
                     <div class="form-group">
+
                         <label for="gender">Gender</label>
 
                         <select
@@ -349,6 +445,7 @@
                             name="gender"
                             required
                         >
+
                             <option value="" disabled selected>
                                 Select gender
                             </option>
@@ -356,14 +453,18 @@
                             <option value="Male">Male</option>
                             <option value="Female">Female</option>
                             <option value="Other">Other</option>
+
                             <option value="Prefer not to say">
                                 Prefer not to say
                             </option>
+
                         </select>
+
                     </div>
 
                     <!-- City -->
                     <div class="form-group">
+
                         <label for="city">City</label>
 
                         <input
@@ -375,6 +476,7 @@
                             maxlength="100"
                             required
                         >
+
                     </div>
 
                 </div>
@@ -385,10 +487,14 @@
 
             </form>
 
+            <!-- Privacy Note -->
             <p class="privacy-note">
+
                 <span class="privacy-icon">🔒</span>
+
                 Your information is used to prepare your screening report.
                 Please do not enter another person's details without their consent.
+
             </p>
 
         </main>
