@@ -1,0 +1,416 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DiaCare | Health Screening</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: linear-gradient(135deg, #e8f8f5, #f0f5ff);
+    color: #243b53;
+    padding: 25px 15px;
+}
+
+.container {
+    max-width: 950px;
+    margin: auto;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.logo {
+    display: inline-flex;
+    width: 52px;
+    height: 52px;
+    align-items: center;
+    justify-content: center;
+    background: #d2f5e9;
+    border-radius: 16px;
+    font-size: 27px;
+    margin-bottom: 8px;
+}
+
+header h1 {
+    color: #078477;
+    font-size: 29px;
+}
+
+header p {
+    color: #718096;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.progress {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 22px;
+}
+
+.progress span {
+    height: 5px;
+    width: 65px;
+    border-radius: 10px;
+    background: #d4e4e7;
+}
+
+.progress span.active {
+    background: #0aa68f;
+}
+
+.card {
+    background: white;
+    padding: 28px;
+    border-radius: 22px;
+    box-shadow: 0 12px 35px #164e6310;
+}
+
+.heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.heading h2 {
+    font-size: 23px;
+}
+
+.step {
+    color: #078477;
+    background: #e0f7f1;
+    padding: 7px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.subtitle {
+    color: #718096;
+    font-size: 14px;
+    margin-bottom: 22px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 15px;
+}
+
+.field {
+    padding: 17px;
+    border: 1px solid #e6edf2;
+    border-radius: 16px;
+    background: #fcfefe;
+    transition: 0.2s;
+}
+
+.field:focus-within {
+    border-color: #0aa68f;
+    box-shadow: 0 0 0 3px #0aa68f14;
+}
+
+.field-top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.icon {
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    font-size: 19px;
+    flex-shrink: 0;
+}
+
+.mint { background: #d9f7ed; }
+.blue { background: #e0edff; }
+.purple { background: #eee5ff; }
+.orange { background: #fff0dc; }
+.pink { background: #ffe5ed; }
+.yellow { background: #fff7cc; }
+.cyan { background: #dcf6fb; }
+.green { background: #e4f5d9; }
+
+label {
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.unit {
+    display: block;
+    color: #078477;
+    font-size: 11px;
+    margin-top: 3px;
+}
+
+.hint {
+    font-size: 12px;
+    color: #7b8b99;
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+
+input {
+    width: 100%;
+    border: 1px solid #dce6eb;
+    border-radius: 10px;
+    padding: 12px;
+    font-size: 15px;
+    outline: none;
+    background: white;
+    color: #243b53;
+}
+
+input:focus {
+    border-color: #0aa68f;
+}
+
+input::placeholder {
+    color: #a4b1bb;
+}
+
+.actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.back, .submit {
+    padding: 15px;
+    border-radius: 12px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.back {
+    flex: 1;
+    color: #64748b;
+    border: 1px solid #dce6eb;
+}
+
+.submit {
+    flex: 2;
+    border: none;
+    color: white;
+    background: linear-gradient(135deg, #0aa68f, #087f73);
+    cursor: pointer;
+}
+
+.submit:hover {
+    filter: brightness(0.95);
+}
+
+.note {
+    text-align: center;
+    color: #82919c;
+    font-size: 12px;
+    line-height: 1.6;
+    margin-top: 18px;
+}
+
+footer {
+    text-align: center;
+    color: #91a5aa;
+    font-size: 12px;
+    margin-top: 22px;
+}
+
+@media (max-width: 650px) {
+    .card {
+        padding: 20px 15px;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .actions {
+        flex-direction: column-reverse;
+    }
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<header>
+    <div class="logo">✚</div>
+    <h1>DiaCare</h1>
+    <p>Your health screening companion</p>
+</header>
+
+<div class="progress">
+    <span class="active"></span>
+    <span class="active"></span>
+    <span></span>
+</div>
+
+<main class="card">
+
+    <div class="heading">
+        <h2>Health Measurements</h2>
+        <span class="step">STEP 2 OF 3</span>
+    </div>
+
+    <p class="subtitle">
+        Enter your test values below. Use the units shown on your report.
+    </p>
+
+    <form action="/predict" method="POST">
+    <div class="grid">
+
+        <div class="field">
+            <div class="field-top">
+                <div class="icon mint">🤰</div>
+                <div>
+                    <label for="Pregnancies">Pregnancies</label>
+                    <span class="unit">Number of times</span>
+                </div>
+            </div>
+            <p class="hint">Number of previous pregnancies.</p>
+            <input type="number" id="Pregnancies" name="Pregnancies"
+                   min="0" max="20" step="1" placeholder="e.g. 2" required>
+        </div>
+
+        <div class="field">
+            <div class="field-top">
+                <div class="icon blue">🩸</div>
+                <div>
+                    <label for="Glucose">Glucose</label>
+                    <span class="unit">mg/dL</span>
+                </div>
+            </div>
+            <p class="hint">Blood sugar test value.</p>
+            <input type="number" id="Glucose" name="Glucose"
+                   min="1" max="500" step="any" placeholder="e.g. 120" required>
+        </div>
+
+        <div class="field">
+            <div class="field-top">
+                <div class="icon purple">💓</div>
+                <div>
+                    <label for="BloodPressure">Blood Pressure</label>
+                    <span class="unit">Diastolic · mmHg</span>
+                </div>
+            </div>
+            <p class="hint">The lower number in your BP reading.</p>
+            <input type="number" id="BloodPressure" name="BloodPressure"
+                   min="1" max="300" step="any" placeholder="e.g. 70" required>
+        </div>
+
+        <div class="field">
+            <div class="field-top">
+                <div class="icon orange">📏</div>
+                <div>
+                    <label for="SkinThickness">Skin Thickness</label>
+                    <span class="unit">mm</span>
+                </div>
+            </div>
+            <p class="hint">Triceps skinfold measurement.</p>
+            <input type="number" id="SkinThickness" name="SkinThickness"
+                   min="1" max="100" step="any" placeholder="e.g. 20" required>
+        </div>
+
+        <div class="field">
+            <div class="field-top">
+                <div class="icon pink">🧪</div>
+                <div>
+                    <label for="Insulin">Insulin</label>
+                    <span class="unit">μU/mL</span>
+                </div>
+            </div>
+            <p class="hint">2-hour serum insulin test value.</p>
+            <input type="number" id="Insulin" name="Insulin"
+                   min="1" max="3000" step="any" placeholder="e.g. 80" required>
+        </div>
+
+        <div class="field">
+            <div class="field-top">
+                <div class="icon yellow">⚖️</div>
+                <div>
+                    <label for="BMI">BMI</label>
+                    <span class="unit">kg/m²</span>
+                </div>
+            </div>
+            <p class="hint">Body Mass Index from height and weight.</p>
+            <input type="number" id="BMI" name="BMI"
+                   min="1" max="100" step="any" placeholder="e.g. 25.5" required>
+        </div>
+
+        <div class="field">
+            <div class="field-top">
+                <div class="icon cyan">🧬</div>
+                <div>
+                    <label for="DiabetesPedigreeFunction">Family History Score</label>
+                    <span class="unit">Pedigree score</span>
+                </div>
+            </div>
+            <p class="hint">A model score related to family history.</p>
+            <input type="number" id="DiabetesPedigreeFunction"
+                   name="DiabetesPedigreeFunction"
+                   min="0" max="3" step="any" placeholder="e.g. 0.45" required>
+        </div>
+
+        <div class="field">
+            <div class="field-top">
+                <div class="icon green">🎂</div>
+                <div>
+                    <label for="Age">Age</label>
+                    <span class="unit">Years</span>
+                </div>
+            </div>
+            <p class="hint">Your age in completed years.</p>
+            <input type="number" id="Age" name="Age"
+                   min="18" max="120" step="1" placeholder="e.g. 28" required>
+        </div>
+
+    </div>
+
+    <div class="actions">
+        <a href="/" class="back">← Back</a>
+        <button type="submit" class="submit">
+            Get Screening Result →
+        </button>
+    </div>
+    </form>
+
+    <p class="note">
+        Use values from your medical report. Do not guess unknown measurements.
+        This tool provides an experimental estimate, not a medical diagnosis.
+    </p>
+
+</main>
+
+<footer>DiaCare · Health screening made simple</footer>
+
+</div>
+</body>
+</html>

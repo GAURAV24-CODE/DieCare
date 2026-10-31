@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DiaCare | Patient Information</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: #f0f8f7;
+            color: #203f4a;
+            min-height: 100vh;
+            padding: 30px 18px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Brand header */
+        .brand {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        .logo-icon {
+            width: 62px;
+            height: 62px;
+            background: #d7f3ee;
+            color: #0d887e;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 38px;
+            font-weight: 700;
+            margin: 0 auto 12px;
+        }
+
+        .brand h1 {
+            color: #07877d;
+            font-size: 34px;
+            font-weight: 750;
+            letter-spacing: -0.8px;
+            margin-bottom: 8px;
+        }
+
+        .tagline {
+            color: #718895;
+            font-size: 15px;
+            letter-spacing: 0.3px;
+        }
+
+        /* Progress indicator */
+        .progress {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin: 28px 0;
+        }
+
+        .progress-step {
+            width: 80px;
+            height: 6px;
+            background: #d7e7e5;
+            border-radius: 20px;
+        }
+
+        .progress-step.active {
+            background: #0d9488;
+        }
+
+        /* Main form card */
+        .form-card {
+            background: #ffffff;
+            border-radius: 26px;
+            padding: 42px 40px;
+            box-shadow: 0 12px 35px rgba(20, 90, 85, 0.07);
+        }
+
+        .form-heading {
+            text-align: center;
+            margin-bottom: 34px;
+        }
+
+        .form-heading h2 {
+            color: #173f4a;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .form-heading p {
+            color: #718895;
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        /* Form fields */
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 25px 23px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #234653;
+            margin-bottom: 10px;
+            letter-spacing: 0.2px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            height: 54px;
+            padding: 0 16px;
+            border: 1px solid #d5e4e8;
+            border-radius: 14px;
+            background: #fbfdfd;
+            color: #294650;
+            font-family: inherit;
+            font-size: 15px;
+            outline: none;
+            transition: 0.2s ease;
+        }
+
+        input::placeholder {
+            color: #8a969d;
+        }
+
+        input:focus,
+        select:focus {
+            border-color: #0d9488;
+            background: #ffffff;
+            box-shadow: 0 0 0 4px rgba(13, 148, 136, 0.10);
+        }
+
+        .field-hint {
+            color: #8297a2;
+            font-size: 12px;
+            line-height: 1.5;
+            margin-top: 9px;
+        }
+
+        /* Continue button */
+        .submit-button {
+            width: 100%;
+            height: 58px;
+            border: none;
+            border-radius: 14px;
+            background: #0b887d;
+            color: #ffffff;
+            font-family: inherit;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 32px;
+            transition: 0.2s ease;
+        }
+
+        .submit-button:hover {
+            background: #08766d;
+            transform: translateY(-1px);
+            box-shadow: 0 7px 18px rgba(13, 148, 136, 0.18);
+        }
+
+        .submit-button:focus-visible {
+            outline: 3px solid #8ce3d7;
+            outline-offset: 3px;
+        }
+
+        /* Privacy note */
+        .privacy-note {
+            max-width: 690px;
+            margin: 24px auto 0;
+            text-align: center;
+            color: #718895;
+            font-size: 12px;
+            line-height: 1.8;
+        }
+
+        .privacy-icon {
+            color: #b8860b;
+            margin-right: 4px;
+        }
+
+        /* Mobile layout */
+        @media (max-width: 600px) {
+            body {
+                padding: 22px 13px;
+            }
+
+            .brand h1 {
+                font-size: 30px;
+            }
+
+            .form-card {
+                padding: 28px 20px;
+                border-radius: 22px;
+            }
+
+            .form-heading h2 {
+                font-size: 24px;
+            }
+
+            .form-heading p {
+                font-size: 14px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+                gap: 21px;
+            }
+
+            .form-group.full-width {
+                grid-column: auto;
+            }
+
+            .progress-step {
+                width: 65px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- DiaCare brand -->
+        <header class="brand">
+            <div class="logo-icon" aria-hidden="true">+</div>
+
+            <h1>DiaCare</h1>
+
+            <p class="tagline">
+                Small steps. Better health.
+            </p>
+        </header>
+
+        <!-- Three-page progress -->
+        <div class="progress" aria-label="Step 1 of 3">
+            <div class="progress-step active"></div>
+            <div class="progress-step"></div>
+            <div class="progress-step"></div>
+        </div>
+
+        <!-- Patient information form -->
+        <main class="form-card">
+
+            <div class="form-heading">
+                <h2>Patient Information</h2>
+
+                <p>
+                    Welcome! Please enter your details before starting
+                    the diabetes screening.
+                </p>
+            </div>
+
+            <form action="{{ url_for('screening') }}" method="POST">
+
+                <div class="form-grid">
+
+                    <!-- Full name -->
+                    <div class="form-group full-width">
+                        <label for="full_name">Full Name</label>
+
+                        <input
+                            type="text"
+                            id="full_name"
+                            name="full_name"
+                            placeholder="Enter your full name"
+                            autocomplete="name"
+                            maxlength="100"
+                            required
+                        >
+
+                        <span class="field-hint">
+                            Enter your name as you would like it to appear on your report.
+                        </span>
+                    </div>
+
+                    <!-- Mobile number -->
+                    <div class="form-group">
+                        <label for="mobile">Mobile Number</label>
+
+                        <input
+                            type="tel"
+                            id="mobile"
+                            name="mobile"
+                            placeholder="10-digit mobile number"
+                            pattern="[6-9][0-9]{9}"
+                            inputmode="numeric"
+                            autocomplete="tel"
+                            maxlength="10"
+                            required
+                        >
+
+                        <span class="field-hint">
+                            Enter your 10-digit Indian mobile number.
+                        </span>
+                    </div>
+
+                    <!-- Age -->
+                    <div class="form-group">
+                        <label for="age">Age</label>
+
+                        <input
+                            type="number"
+                            id="age"
+                            name="age"
+                            placeholder="Enter your age"
+                            min="18"
+                            max="120"
+                            required
+                        >
+
+                        <span class="field-hint">
+                            Enter your age in completed years.
+                        </span>
+                    </div>
+
+                    <!-- Gender -->
+                    <div class="form-group">
+                        <label for="gender">Gender</label>
+
+                        <select
+                            id="gender"
+                            name="gender"
+                            required
+                        >
+                            <option value="" disabled selected>
+                                Select gender
+                            </option>
+
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                            <option value="Prefer not to say">
+                                Prefer not to say
+                            </option>
+                        </select>
+                    </div>
+
+                    <!-- City -->
+                    <div class="form-group">
+                        <label for="city">City</label>
+
+                        <input
+                            type="text"
+                            id="city"
+                            name="city"
+                            placeholder="Enter your city"
+                            autocomplete="address-level2"
+                            maxlength="100"
+                            required
+                        >
+                    </div>
+
+                </div>
+
+                <button type="submit" class="submit-button">
+                    Continue to Screening&nbsp; →
+                </button>
+
+            </form>
+
+            <p class="privacy-note">
+                <span class="privacy-icon">🔒</span>
+                Your information is used to prepare your screening report.
+                Please do not enter another person's details without their consent.
+            </p>
+
+        </main>
+
+    </div>
+
+</body>
+</html>
