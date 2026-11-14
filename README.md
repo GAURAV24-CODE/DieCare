@@ -18,7 +18,7 @@ Users enter basic patient information and eight health-related measurements. The
 
 The project demonstrates practical implementation of machine learning, data preprocessing, Flask web development, HTML, CSS and application deployment.
 
-> **Medical Disclaimer:** DiaCare is an educational portfolio project, not a clinically validated medical tool. Its predictions must not be used to diagnose diabetes, make treatment decisions or replace advice from qualified healthcare professionals.
+> **Medical Disclaimer:** DiaCare is an educational portfolio project, not a clinically validated medical tool. Its predictions must not be used to diagnose diabetes, make treatment decisions or replace advice from qualified healthcare professi
 
 ## ✨ Key Features
 
