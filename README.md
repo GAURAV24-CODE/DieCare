@@ -1,6 +1,6 @@
 # 🩺 DiaCare – Diabetes Risk Screening & Prediction Web Applic
 
-### An Educational Machine Learning Project Using Python, Flask and Scikit-learn
+### An Educational Machine Learning Project Using Python, Flask and Scikit-learnsss
 
 ![Python](https://img.shields.io/badge/Python-3.x-blue?logo=python&logoColor=white)
 ![Flask](https://img.shields.io/badge/Flask-Web%20Application-black?logo=flask)
